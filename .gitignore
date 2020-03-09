@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# The directory with all modules for the .json file
+node_modules/
