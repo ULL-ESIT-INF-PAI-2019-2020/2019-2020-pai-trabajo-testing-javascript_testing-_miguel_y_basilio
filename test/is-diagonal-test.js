@@ -26,9 +26,23 @@ describe("Testing isDiagonalTest function", () => {
     expect(isDiagonal).to.equal(false);
   });
 
-  /*it("point is undefined", function() {
+  it("One of the two points given is undefined", function() {
     pointTwo = undefined;
-    const equationStraight = lineFromToTest(pointOne, pointTwo);
-    expect(equationStraight[0]).to.be.NaN;
-  });*/
+    const isDiagonal = isDiagonalTest(pointOne, pointTwo);
+    expect(isDiagonal).to.equal(false);
+  });
+
+
+  it("One of the two points given is null", function() {
+    pointOne = null;
+    const isDiagonal = isDiagonalTest(pointOne, pointTwo);
+    expect(isDiagonal).to.equal(false);
+  });
+
+
+  it("One of the two points given is NaN", function() {
+    pointTwo = NaN;
+    const isDiagonal = isDiagonalTest(pointOne, pointTwo);
+    expect(isDiagonal).to.equal(false);
+  });
 });
