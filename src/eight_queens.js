@@ -17,12 +17,12 @@ Referencias:  Enunciado de la práctica:
 
 */
 
-'use strict';
+"use strict";
 
-const now = require('performance-now');
+const now = require("performance-now");
 
 function isValidPoint(point) {
-  return ((point !== undefined) && (point !== null) && (point.length === 2));
+  return point !== undefined && point !== null && point.length === 2;
 }
 
 /**
@@ -39,8 +39,8 @@ function lineFromTo(pointOne, pointTwo) {
     const xEnd = pointTwo[0];
     const yEnd = pointTwo[1];
 
-    const slope = (yEnd - yInitial)/(xEnd - xInitial);
-    const xAtOrigin = yInitial - (xInitial * slope);
+    const slope = (yEnd - yInitial) / (xEnd - xInitial);
+    const xAtOrigin = yInitial - xInitial * slope;
     return [slope, xAtOrigin];
   }
   return [NaN, NaN];
@@ -58,14 +58,16 @@ exports.lineFromToTest = lineFromTo;
 function isDiagonals(pointOne, pointTwo) {
   const equationStraight = lineFromTo(pointOne, pointTwo);
   const slope = equationStraight[0];
-  if ((slope === 1) || (slope === -1)) {
+  if (slope === 1 || slope === -1) {
     return true;
   }
   return false;
 }
 
+exports.isDiagonalTest = isDiagonals;
+
 function isValidArray(array) {
-  return ((array !== undefined) && (array !== null));
+  return array !== undefined && array !== null;
 }
 
 /**
@@ -77,8 +79,8 @@ function isValidArray(array) {
 function isSafeQueen(candidateQueens) {
   if (isValidArray()) {
     const countQueens = candidateQueens.length;
-    for (let queenOne = 0; queenOne < countQueens; queenOne ++) {
-      for (let queenTwo = queenOne + 1; queenTwo < countQueens; queenTwo ++) {
+    for (let queenOne = 0; queenOne < countQueens; queenOne++) {
+      for (let queenTwo = queenOne + 1; queenTwo < countQueens; queenTwo++) {
         if (isDiagonals(candidateQueens[queenOne], candidateQueens[queenTwo])) {
           return false;
         }
@@ -110,8 +112,8 @@ function arrayWithout(originalArray, elementErase) {
 /**
  * @desc Calcula todas las posibles combinaciones del reto de las 8 reinas.
  * Escoge una posible reina, valiendose de las permutaciones, donde cada
-*  posición nueva se asegura que no se repitan las filas o columnas, por
-*  lo tanto la única validación que se hace es en las diagonales
+ *  posición nueva se asegura que no se repitan las filas o columnas, por
+ *  lo tanto la única validación que se hace es en las diagonales
  * @param {[number, number]} queens Posición de las reinas, donde [x,y]
  * representa las coordenas de de cada reina en el tablero
  * @param {[number]} candidateColumns Son las columnas en las cuales
@@ -129,8 +131,12 @@ function eightQueens(queens, candidateColumns, sizeBoard, allCombinations) {
       const remainingColumns = arrayWithout(candidateColumns, chosenColumn);
 
       if (isSafeQueen(candidateQueens)) {
-        eightQueens(candidateQueens, remainingColumns, sizeBoard,
-            allCombinations);
+        eightQueens(
+          candidateQueens,
+          remainingColumns,
+          sizeBoard,
+          allCombinations
+        );
       }
     }
   }
@@ -143,16 +149,15 @@ function eightQueens(queens, candidateColumns, sizeBoard, allCombinations) {
  */
 function printAlgebraicNotation(queenCombination) {
   const output = [];
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   for (const queen of queenCombination) {
-    let queenNotation = '';
+    let queenNotation = "";
     queenNotation += alphabet.charAt(queen[0]);
     queenNotation += queen[1];
     output.push(queenNotation);
   }
-  console.log(output.join(' '));
+  console.log(output.join(" "));
 }
-
 
 /**
  * @desc Dibuja el tablero de ajedrez para una combianción de reinas
@@ -162,23 +167,22 @@ function printAlgebraicNotation(queenCombination) {
  */
 function printBoard(queenCombination, sizeBoard) {
   let posQueen = 0;
-  for (let row = 0; row < sizeBoard; row ++) {
+  for (let row = 0; row < sizeBoard; row++) {
     const queen = queenCombination[posQueen];
     const columnQuenn = queen[1];
-    let output = '';
+    let output = "";
 
-    for (let column = 0; column < sizeBoard; column ++) {
+    for (let column = 0; column < sizeBoard; column++) {
       if (column === columnQuenn) {
-        output += 'Q';
+        output += "Q";
       } else {
-        output += '.';
+        output += ".";
       }
     }
     console.log(output);
-    posQueen ++;
+    posQueen++;
   }
 }
-
 
 /**
  * @desc Dibuja todos los tableros de ajedrez para las distintas combianción de
@@ -189,11 +193,11 @@ function printBoard(queenCombination, sizeBoard) {
  * @param {*} sizeBoard Tamaño del tablero
  */
 function printAllBoards(allCombinations, sizeBoard) {
-  for (let board = 0; board < allCombinations.length; board ++) {
+  for (let board = 0; board < allCombinations.length; board++) {
     console.log(`Tablero # ${board + 1}`);
     printBoard(allCombinations[board], sizeBoard);
     printAlgebraicNotation(allCombinations[board]);
-    console.log('------------------');
+    console.log("------------------");
   }
 }
 
@@ -208,7 +212,7 @@ function calculateBoard() {
   const queens = [];
   const candidateColumns = [];
 
-  for (let candidate = 0; candidate < sizeBoard; candidate ++) {
+  for (let candidate = 0; candidate < sizeBoard; candidate++) {
     candidateColumns.push(candidate);
   }
 
@@ -218,12 +222,11 @@ function calculateBoard() {
 
   printAllBoards(allCombinations, sizeBoard);
 
-  const time = ((end - start)/1000).toFixed(4);
+  const time = ((end - start) / 1000).toFixed(4);
   console.log(`${time} segundos`);
 }
 
 //calculateBoard();
-
 
 const QUEEN_ONE = [1, 2];
 const QUEEN_TWO = [2, 3];
