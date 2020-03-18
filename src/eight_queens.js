@@ -67,7 +67,7 @@ function isDiagonals(pointOne, pointTwo) {
 exports.isDiagonalTest = isDiagonals;
 
 function isValidArray(array) {
-  return array !== undefined && array !== null;
+  return ((array !== undefined) && (array !== null));
 }
 
 /**
@@ -77,7 +77,7 @@ function isValidArray(array) {
  * @return {boolean} Retorna verdadero si las reinas no se amenazan
  */
 function isSafeQueen(candidateQueens) {
-  if (isValidArray()) {
+  if (isValidArray(candidateQueens)) {
     const countQueens = candidateQueens.length;
     for (let queenOne = 0; queenOne < countQueens; queenOne++) {
       for (let queenTwo = queenOne + 1; queenTwo < countQueens; queenTwo++) {
