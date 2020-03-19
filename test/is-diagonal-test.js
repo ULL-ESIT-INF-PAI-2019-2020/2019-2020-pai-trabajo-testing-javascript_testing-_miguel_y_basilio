@@ -21,7 +21,7 @@ describe("Testing isDiagonalTest function", () => {
     expect(isDiagonal).to.equal(true);
   });
 
-  it("Two points aare not in diagonal line", function() {
+  it("Two points are not in diagonal line", function() {
     const isDiagonal = isDiagonalTest(pointOne, pointThree);
     expect(isDiagonal).to.equal(false);
   });

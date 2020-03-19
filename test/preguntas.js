@@ -1,4 +1,4 @@
-describe("Testing isDiagonalTest function", () => {
+/*describe("Testing isDiagonalTest function", () => {
   
   beforeEach(function() {
     let pointOne = [1, 2];
@@ -11,6 +11,4 @@ describe("Testing isDiagonalTest function", () => {
     const isDiagonal = isDiagonalTest(pointOne, pointTwo);
     expect(isDiagonal).to.equal(true);
   });
-  .
-  .
-  .
+*/
