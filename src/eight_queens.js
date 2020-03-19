@@ -50,8 +50,8 @@ exports.lineFromToTest = lineFromTo;
 
 /**
  * @desc Calcula si dos puntos están en una diagonal
- * @param {[number, number]} pointOne Coordenas del primer punto [x,y]
- * @param {[number, number]} pointTwo Coordenas del segundo punto [x,y]
+ * @param {[number, number]} pointOne Coordenadas del primer punto [x,y]
+ * @param {[number, number]} pointTwo Coordenadas del segundo punto [x,y]
  * @return {boolean} Retorna verdadero si los puntos estan en una diagonal, en
  * otro caso falso
  */
