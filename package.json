@@ -4,7 +4,8 @@
   "description": "Mocha Tests",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test:watch": "mocha --watch"
   },
   "author": "Jani Hartikainen",
   "license": "MIT",
