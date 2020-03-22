@@ -1,35 +1,48 @@
-/** Universidad de La Laguna
-    Escuela Superior de Ingeniería y Tecnología
-    Grado en Ingeniería Informática
-    Asignatura: Programación de Aplicaciones Interactivas
-    Curso: 3º
-    Práctica 3 PAI - 8 Reinas
-    @author Autor: Miguel Ángel Ordoñez Morales
-    Correo: alu0101281087@ull.es
-    @since 10/03/2020
-    @desc Contiene la implementación de una función para calcular todos los
-              escenarios donde el juego de las 8 reinas es valido. Para que un
-              esceneario sea valido, ninguna reina puede amanazar a otra, para
-              ello no pueden estar en la misma fila, columna ni diagonal
-Referencias:  Enunciado de la práctica:
-              https://github.com/ULL-ESIT-INF-PAI-2019-2020/practica-4-8queens-miguel141097/blob/master/2019-2020_p04_8Queens.md              Repositorio git con este código:
-              https://github.com/ULL-ESIT-INF-PAI-2019-2020/practica-4-8queens-miguel141097
+/* eslint-disable valid-jsdoc */
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Grado en Ingeniería Informática
+ * Asignatura: Programación de Aplicaciones Interactivas
+ * Curso: 3º
+ *
+ * @author Miguel Ordoñez
+ * @author Basilio Gómez
+ * @since 23 de Marzo del 2020
+ * @desc  Contiene la implementación de una función para calcular todos los
+ *        escenarios donde el juego de las 8 reinas es valido. Para que un
+ *        esceneario sea valido, ninguna reina puede amanazar a otra, para
+ *        ello no pueden estar en la misma fila, columna ni diagonal
+ * @link https://github.com/ULL-ESIT-INF-PAI-2019-2020/2019-2020-pai-trabajo-testing-javascript_testing-_miguel_y_basilio
+ */
 
-*/
+'use strict';
 
-"use strict";
+const now = require('performance-now');
 
-const now = require("performance-now");
-
+/**
+ * @desc Verifica si un punto es correcto, para ello debe ser un array con dos
+ * posiciones, una para el eje de las abscisas y otro para el de las ordenadas,
+ * tal que [x, y]
+ * @param {[number. number]} point Es el punto que se quiere verificar
+ * @returns {boolean} Verdadero si el punto es correcto
+ */
 function isValidPoint(point) {
-  return point !== undefined && point !== null && point.length === 2;
+  if ((typeof(point) === 'object') && (point !== null)) {
+    if (point.length === 2) {
+      const RESULT_X = ((typeof(point[0]) === 'number') && !isNaN(point[0]));
+      const RESULT_Y = ((typeof(point[1]) === 'number') && !isNaN(point[1]));
+      return (RESULT_X && RESULT_Y);
+    }
+  }
+  return false;
 }
 
 /**
  * @desc Calcula la ecuación de la recta dado dos puntos
- * @param {[number, number]} pointOne Coordenas del primer punto [x,y]
- * @param {[number, number]} pointTwo Coordenas del segundo punto [x,y]
- * @return {[number, number]} Retorna la ecuación de la recta tal que [m,b],
+ * @param {[number, number]} pointOne Coordenadas del primer punto [x, y]
+ * @param {[number, number]} pointTwo Coordenadas del segundo punto [x, y]
+ * @return {[number, number]} Retorna la ecuación de la recta tal que [m, b],
  * siendo m la pendiente y b la ordenada en el origen
  */
 function lineFromTo(pointOne, pointTwo) {
@@ -40,8 +53,8 @@ function lineFromTo(pointOne, pointTwo) {
     const yEnd = pointTwo[1];
 
     const slope = (yEnd - yInitial) / (xEnd - xInitial);
-    const xAtOrigin = yInitial - xInitial * slope;
-    return [slope, xAtOrigin];
+    const yAtOrigin = yInitial - xInitial * slope;
+    return [slope, yAtOrigin];
   }
   return [NaN, NaN];
 }
@@ -50,8 +63,8 @@ exports.lineFromToTest = lineFromTo;
 
 /**
  * @desc Calcula si dos puntos están en una diagonal
- * @param {[number, number]} pointOne Coordenadas del primer punto [x,y]
- * @param {[number, number]} pointTwo Coordenadas del segundo punto [x,y]
+ * @param {[number, number]} pointOne Coordenadas del primer punto [x, y]
+ * @param {[number, number]} pointTwo Coordenadas del segundo punto [x, y]
  * @return {boolean} Retorna verdadero si los puntos estan en una diagonal, en
  * otro caso falso
  */
@@ -66,18 +79,31 @@ function isDiagonals(pointOne, pointTwo) {
 
 exports.isDiagonalTest = isDiagonals;
 
-function isValidArray(array) {
-  return ((array !== undefined) && (array !== null));
+/**
+ * Verifica que el conjunto de reinas candidatas es valido
+ * @param {[[number, number]]} candidateQueens Conjunto de reinas candidatas
+ * @returns {boolean} Verdadero si el conjunto es valido
+ */
+function isValidCandidateQueens(candidateQueens) {
+  if ((candidateQueens !== null) && (typeof(candidateQueens) == 'object')) {
+    for (const queen of candidateQueens) {
+      if (!isValidPoint(queen)) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return false;
 }
 
 /**
  * @desc Calcula si un conjunto de reinas no se amenza
- * @param {[number, number]} candidateQueens Posición de las reinas, donde [x,y]
- * representa las coordenas de de cada reina en el tablero
+ * @param {[number, number]} candidateQueens Posición de las reinas, donde
+ * [x, y] representa las coordenadas de de cada reina en el tablero
  * @return {boolean} Retorna verdadero si las reinas no se amenazan
  */
 function isSafeQueen(candidateQueens) {
-  if (isValidArray(candidateQueens)) {
+  if (isValidCandidateQueens(candidateQueens)) {
     const countQueens = candidateQueens.length;
     for (let queenOne = 0; queenOne < countQueens; queenOne++) {
       for (let queenTwo = queenOne + 1; queenTwo < countQueens; queenTwo++) {
@@ -86,8 +112,9 @@ function isSafeQueen(candidateQueens) {
         }
       }
     }
+    return true;
   }
-  return true;
+  return false;
 }
 
 exports.isSafeQueenTest = isSafeQueen;
@@ -115,7 +142,7 @@ function arrayWithout(originalArray, elementErase) {
  *  posición nueva se asegura que no se repitan las filas o columnas, por
  *  lo tanto la única validación que se hace es en las diagonales
  * @param {[number, number]} queens Posición de las reinas, donde [x,y]
- * representa las coordenas de de cada reina en el tablero
+ * representa las coordenadas de de cada reina en el tablero
  * @param {[number]} candidateColumns Son las columnas en las cuales
  * todavia no se ha colocado una reina
  * @param {number} sizeBoard Tamaño del tablero
@@ -132,10 +159,10 @@ function eightQueens(queens, candidateColumns, sizeBoard, allCombinations) {
 
       if (isSafeQueen(candidateQueens)) {
         eightQueens(
-          candidateQueens,
-          remainingColumns,
-          sizeBoard,
-          allCombinations
+            candidateQueens,
+            remainingColumns,
+            sizeBoard,
+            allCombinations,
         );
       }
     }
@@ -145,24 +172,24 @@ function eightQueens(queens, candidateColumns, sizeBoard, allCombinations) {
 /**
  * @desc Muestra la notación algebraica de las reinas
  * @param {[[number, number]]} queenCombination Posición de las reinas, donde
- * [x,y] representa las coordenas de de cada reina en el tablero
+ * [x,y] representa las coordenadas de de cada reina en el tablero
  */
 function printAlgebraicNotation(queenCombination) {
   const output = [];
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   for (const queen of queenCombination) {
-    let queenNotation = "";
+    let queenNotation = '';
     queenNotation += alphabet.charAt(queen[0]);
     queenNotation += queen[1];
     output.push(queenNotation);
   }
-  console.log(output.join(" "));
+  console.log(output.join(' '));
 }
 
 /**
  * @desc Dibuja el tablero de ajedrez para una combianción de reinas
  * @param {[[number, number]]} queenCombination Posición de las reinas, donde
- * [x,y] representa las coordenas de de cada reina en el tablero
+ * [x,y] representa las coordenadas de de cada reina en el tablero
  * @param {*} sizeBoard Tamaño del tablero
  */
 function printBoard(queenCombination, sizeBoard) {
@@ -170,13 +197,13 @@ function printBoard(queenCombination, sizeBoard) {
   for (let row = 0; row < sizeBoard; row++) {
     const queen = queenCombination[posQueen];
     const columnQuenn = queen[1];
-    let output = "";
+    let output = '';
 
     for (let column = 0; column < sizeBoard; column++) {
       if (column === columnQuenn) {
-        output += "Q";
+        output += 'Q';
       } else {
-        output += ".";
+        output += '.';
       }
     }
     console.log(output);
@@ -188,7 +215,7 @@ function printBoard(queenCombination, sizeBoard) {
  * @desc Dibuja todos los tableros de ajedrez para las distintas combianción de
  * reinas
  * @param {[ [[number, number]] ]} allCombinations Contiene todas los tableros
- * validos con las posiciones de reinas, donde [x,y] representa las coordenas
+ * validos con las posiciones de reinas, donde [x,y] representa las coordenadas
  * de cada reina en el tablero
  * @param {*} sizeBoard Tamaño del tablero
  */
@@ -197,7 +224,7 @@ function printAllBoards(allCombinations, sizeBoard) {
     console.log(`Tablero # ${board + 1}`);
     printBoard(allCombinations[board], sizeBoard);
     printAlgebraicNotation(allCombinations[board]);
-    console.log("------------------");
+    console.log('------------------');
   }
 }
 
@@ -227,7 +254,3 @@ function calculateBoard() {
 }
 
 //calculateBoard();
-
-const QUEEN_ONE = [1, 2];
-const QUEEN_TWO = [2, 3];
-console.log(isDiagonals(QUEEN_TWO, QUEEN_ONE));

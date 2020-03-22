@@ -8,15 +8,16 @@
  * @author Miguel Ordoñez
  * @author Basilio Gómez
  * @since 23 de Marzo del 2020
- * @desc Reto durante la presentación
+ * @desc Node Version: Test de una array
  * @link https://github.com/ULL-ESIT-INF-PAI-2019-2020/2019-2020-pai-trabajo-testing-javascript_testing-_miguel_y_basilio
  */
 
-describe('Description', () => {
-  beforeEach(() => {
-    console.log('Random message');
-  });
+const chai = require('chai');
+const assert = chai.assert;
 
-  it('Test # 1', () => {});
-  it('Test # 2', () => {});
+describe('Array', function() {
+  it('should start empty', function() {
+    const ARRAY = [];
+    assert.equal(ARRAY.length, 0);
+  });
 });

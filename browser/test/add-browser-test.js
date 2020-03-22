@@ -8,12 +8,11 @@
  * @author Miguel Ordoñez
  * @author Basilio Gómez
  * @since 23 de Marzo del 2020
- * @desc Test de la función add en varios ficheros, la cual suma dos números
+ * @desc Browser Version: Test de la función add, la cual suma dos números
  * @link https://github.com/ULL-ESIT-INF-PAI-2019-2020/2019-2020-pai-trabajo-testing-javascript_testing-_miguel_y_basilio
  */
 
-const assert = require('chai').assert;
-const {add} = require('../src/add');
+const assert = chai.assert;
 
 describe('add test', () => {
   it('2 + 3', function() {
