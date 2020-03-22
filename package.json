@@ -7,11 +7,11 @@
     "test": "mocha",
     "test:watch": "mocha --watch"
   },
-  "author": "Jani Hartikainen",
+  "author": "Miguel Ordoñez y Basilio Gómez",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^2.5.3"
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1"
   },
   "dependencies": {
     "performance-now": "^2.1.0"
