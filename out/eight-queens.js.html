@@ -1,4 +1,32 @@
-/* eslint-disable valid-jsdoc */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: eight-queens.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: eight-queens.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable valid-jsdoc */
 /**
  * Universidad de La Laguna
  * Escuela Superior de Ingeniería y Tecnología
@@ -28,11 +56,11 @@ const now = require('performance-now');
  * @returns {boolean} Verdadero si el punto es correcto
  */
 function isValidPoint(point) {
-  if ((typeof(point) === 'object') && (point !== null)) {
+  if ((typeof(point) === 'object') &amp;&amp; (point !== null)) {
     if (point.length === 2) {
-      const RESULT_X = ((typeof(point[0]) === 'number') && !isNaN(point[0]));
-      const RESULT_Y = ((typeof(point[1]) === 'number') && !isNaN(point[1]));
-      return (RESULT_X && RESULT_Y);
+      const RESULT_X = ((typeof(point[0]) === 'number') &amp;&amp; !isNaN(point[0]));
+      const RESULT_Y = ((typeof(point[1]) === 'number') &amp;&amp; !isNaN(point[1]));
+      return (RESULT_X &amp;&amp; RESULT_Y);
     }
   }
   return false;
@@ -46,7 +74,7 @@ function isValidPoint(point) {
  * siendo m la pendiente y b la ordenada en el origen
  */
 function lineFromTo(pointOne, pointTwo) {
-  if (isValidPoint(pointOne) && isValidPoint(pointTwo)) {
+  if (isValidPoint(pointOne) &amp;&amp; isValidPoint(pointTwo)) {
     const xInitial = pointOne[0];
     const yInitial = pointOne[1];
     const xEnd = pointTwo[0];
@@ -85,7 +113,7 @@ exports.isDiagonalTest = isDiagonals;
  * @returns {boolean} Verdadero si el conjunto es valido
  */
 function isValidCandidateQueens(candidateQueens) {
-  if ((candidateQueens !== null) && (typeof(candidateQueens) == 'object')) {
+  if ((candidateQueens !== null) &amp;&amp; (typeof(candidateQueens) == 'object')) {
     for (const queen of candidateQueens) {
       if (!isValidPoint(queen)) {
         return false;
@@ -105,8 +133,8 @@ function isValidCandidateQueens(candidateQueens) {
 function isSafeQueen(candidateQueens) {
   if (isValidCandidateQueens(candidateQueens)) {
     const countQueens = candidateQueens.length;
-    for (let queenOne = 0; queenOne < countQueens; queenOne++) {
-      for (let queenTwo = queenOne + 1; queenTwo < countQueens; queenTwo++) {
+    for (let queenOne = 0; queenOne &lt; countQueens; queenOne++) {
+      for (let queenTwo = queenOne + 1; queenTwo &lt; countQueens; queenTwo++) {
         if (isDiagonals(candidateQueens[queenOne], candidateQueens[queenTwo])) {
           return false;
         }
@@ -194,12 +222,12 @@ function printAlgebraicNotation(queenCombination) {
  */
 function printBoard(queenCombination, sizeBoard) {
   let posQueen = 0;
-  for (let row = 0; row < sizeBoard; row++) {
+  for (let row = 0; row &lt; sizeBoard; row++) {
     const queen = queenCombination[posQueen];
     const columnQuenn = queen[1];
     let output = '';
 
-    for (let column = 0; column < sizeBoard; column++) {
+    for (let column = 0; column &lt; sizeBoard; column++) {
       if (column === columnQuenn) {
         output += 'Q';
       } else {
@@ -220,7 +248,7 @@ function printBoard(queenCombination, sizeBoard) {
  * @param {number} sizeBoard Tamaño del tablero
  */
 function printAllBoards(allCombinations, sizeBoard) {
-  for (let board = 0; board < allCombinations.length; board++) {
+  for (let board = 0; board &lt; allCombinations.length; board++) {
     console.log(`Tablero # ${board + 1}`);
     printBoard(allCombinations[board], sizeBoard);
     printAlgebraicNotation(allCombinations[board]);
@@ -239,7 +267,7 @@ function calculateBoard() {
   const queens = [];
   const candidateColumns = [];
 
-  for (let candidate = 0; candidate < sizeBoard; candidate++) {
+  for (let candidate = 0; candidate &lt; sizeBoard; candidate++) {
     candidateColumns.push(candidate);
   }
 
@@ -254,3 +282,26 @@ function calculateBoard() {
 }
 
 //calculateBoard();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#arrayWithout">arrayWithout</a></li><li><a href="global.html#calculateBoard">calculateBoard</a></li><li><a href="global.html#eightQueens">eightQueens</a></li><li><a href="global.html#isDiagonals">isDiagonals</a></li><li><a href="global.html#isSafeQueen">isSafeQueen</a></li><li><a href="global.html#isValidCandidateQueens">isValidCandidateQueens</a></li><li><a href="global.html#isValidPoint">isValidPoint</a></li><li><a href="global.html#lineFromTo">lineFromTo</a></li><li><a href="global.html#printAlgebraicNotation">printAlgebraicNotation</a></li><li><a href="global.html#printAllBoards">printAllBoards</a></li><li><a href="global.html#printBoard">printBoard</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sun Mar 22 2020 18:29:46 GMT+0000 (GMT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
