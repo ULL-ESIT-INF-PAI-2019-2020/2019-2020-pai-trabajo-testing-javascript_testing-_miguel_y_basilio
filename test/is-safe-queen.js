@@ -16,7 +16,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const eigthQueen = require('../src/eight_queens.js');
+const eigthQueen = require('../src/eight-queens.js');
 const isSafeQueenTest = eigthQueen.isSafeQueenTest;
 
 describe('Testing isSafeQueen function', () => {

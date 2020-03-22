@@ -4,12 +4,25 @@ This directory is organised as follows:
 
       .
       ├── bib          # Assignment bibliography
-      ├── report       # LaTeX template for the report
-      ├── slides       # LaTeX Beamer template for the slides
+      ├── browser      # Source code and test for browser
+      ├── slides       # Presentation 
       ├── tests        # Source code for tests
       ├── src          # Source code
 
-For each assignment there should be a markdown file with the assignment description.
-Find that file and follow the instructions in it.
+## Steps
 
-When the evaluation session of the assignment is over, **do not forget** to upload the link to your repository to the virtual classroom.
+**1: clone repository**
+```bash
+$ git clone git@github.com:ULL-ESIT-INF-PAI-2019-2020/2019-2020-pai-trabajo-testing-javascript_testing-_miguel_y_basilio.git
+```
+
+**2: npm i**
+```bash
+$ cd 2019-2020-pai-trabajo-testing-javascript_testing-_miguel_y_basilio
+2019-2020-pai-trabajo-testing-javascript_testing-_miguel_y_basilio$ npm i
+```
+
+**3: npm i**
+```bash
+2019-2020-pai-trabajo-testing-javascript_testing-_miguel_y_basilio$ npm test
+```
