@@ -5,6 +5,7 @@ This directory is organised as follows:
       .
       ├── bib          # Assignment bibliography
       ├── browser      # Source code and test for browser
+      ├── out          # Documentation in jsdoc
       ├── slides       # Presentation 
       ├── test         # Source code for tests
       ├── src          # Source code
