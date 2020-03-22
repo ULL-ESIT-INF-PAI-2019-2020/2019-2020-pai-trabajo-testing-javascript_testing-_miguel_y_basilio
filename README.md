@@ -6,7 +6,7 @@ This directory is organised as follows:
       ├── bib          # Assignment bibliography
       ├── browser      # Source code and test for browser
       ├── slides       # Presentation 
-      ├── tests        # Source code for tests
+      ├── test         # Source code for tests
       ├── src          # Source code
 
 ## Steps
